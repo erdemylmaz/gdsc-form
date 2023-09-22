@@ -1,3 +1,8 @@
+@font-face {
+    font-family: myFont;
+    src: url(./font/LuckiestGuy-Regular.ttf);
+}
+
 :root {
     --red: #EA4335;
     --blue: #4285F4;
@@ -55,7 +60,8 @@ body {
 .title-top {
     font-size: 24px;
     font-weight: 800;
-    text-shadow: 0px 0px 1px #000;
+    text-shadow: 0px 0px 1px #232323;
+    font-family: myFont;
 }
 
 .title-bottom {
@@ -76,6 +82,7 @@ body {
     font-weight: 300;
     width: 90%;
     text-align: center;
+    color: #232323;
 }
 
 .gdsc {
@@ -108,6 +115,7 @@ body {
 
 .question {
     width: 90%;
+    max-width: 900px;
     min-height: 14vh;
     /* background-color: rgba(0, 0, 0, 0.1); */
     border-radius: 8px;
@@ -172,6 +180,7 @@ body {
     color: #fff;
     font-style: italic;
     text-shadow: 0 0 2px #000;
+    font-family: myFont;
 }
 
 .answer-0 {
@@ -222,6 +231,7 @@ body {
 
 .form-footer {
     width: 90%;
+    max-width: 900px;
     display: flex;
     justify-content: flex-end;
 }
@@ -229,7 +239,8 @@ body {
 .end-btn {
     width: 128px;
     height: 48px;
-    background-color: var(--yellow);
+    /* background-color: var(--yellow); */
+    background-color: rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -239,6 +250,11 @@ body {
     text-shadow: 0 0 2px #000;
     margin-bottom: 24px;
     cursor: pointer;
+    transition: 250ms;
+}
+
+.end-btn:hover {
+    background-color: var(--yellow);
 }
 
 .end-text {
@@ -246,16 +262,27 @@ body {
     font-weight: 200;
     display: none;
     width: 90%;
+    max-width: 900px;
+    height: 28vh;
+    text-align: center;
 }
 
 .cong-text {
     font-weight: 800;
     color: var(--green);
+    font-family: myFont;
+    text-shadow: 0 0 1px #232323;
+}
+
+.end-bot-text {
+    text-align: left;
 }
 
 .end-span {
     font-weight: 500;
     color: var(--blue);
+    font-family: myFont;
+    text-shadow: 0 0 1px #232323;
 }
 
 @keyframes breath {
@@ -289,4 +316,49 @@ body {
     position: absolute;
     border-radius: 50%;
     z-index: -1;
+}
+
+.footer {
+    width: 100%;
+    height: 12vh;
+    background-color: #232323;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.footer-icon {
+    font-size: 24px;
+    margin: auto 4px;
+    text-decoration: none;
+    color: #fff;
+    transition: 250ms;
+}
+
+.footer-text {
+    font-weight: 200;
+}
+
+.instagram-icon:hover {
+    color: var(--blue);
+}
+
+.x-icon:hover {
+    color: var(--red);
+}
+
+.linkedin-icon:hover {
+    color: var(--yellow);
+}
+
+.footer-text:hover {
+    color: var(--green);
+}
+
+@media only screen and (max-width: 900px) {
+    .end-btn {
+        background-color: var(--yellow);
+    }
 }

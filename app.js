@@ -229,6 +229,15 @@ class App {
 
     finishTest = () => {
         // congrats (emoji); we though you would fit...
+
+        let balloons = document.querySelectorAll('.background-balloon');
+
+        balloons.forEach((balloon) => {
+            if(balloon.offsetTop > 500) {
+                balloon.style.display = "none";
+            }
+        })
+
         let bestTeam = this.teams.sort((a, b) => b.point - a.point)[0];
 
         questionsArea.style.display = "none";
@@ -239,7 +248,13 @@ class App {
 
         endText.innerHTML = `
 
-        <div class="end-header"><span class="cong-text">Tebrikler 🥳</span> <br /> Verdiğiniz cevaplara göre size en uygun gördüğümüz ekibimiz <span class="end-span">${bestTeam.title}.</span></div>
+        <div class="end-header">
+            <div class="cong-text">Tebrikler 🥳</div>
+            <div class="end-bot-text">
+                Verdiğiniz cevaplara göre size en uygun gördüğümüz ekibimiz <span class="end-span">${bestTeam.title}.</span>
+            </div>
+
+        </div>
         `;
 
     }
@@ -280,7 +295,7 @@ class App {
         const COUNT = 50;
 
         const WIDTH = window.innerWidth;
-        const HEIGHT = document.body.clientHeight;
+        const HEIGHT = document.body.clientHeight - 64;
 
         for(let x = 0; x < COUNT; x++) {
             let randomNumber = Math.floor(Math.random() * SIZES.length);
