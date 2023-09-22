@@ -411,9 +411,9 @@ body {
 }
 
 .question:nth-child(2n) {
-    margin-left: 240px;
+    margin-left: 256px;
 }
 
 .question {
-    margin-left: -240px;
+    margin-left: -256px;
 }

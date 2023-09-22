@@ -204,40 +204,64 @@ class App {
 
         let nextQuestionIndex = parseInt(answersArea.dataset.question);
 
-        questions.forEach((question) => {
-            if(question.classList.contains('current-question')) {
-                question.classList.remove('current-question');
+        // GET UNANSWERED QUESTIONS TO DECLARE LAST QUESTION
+        let filteredArray = [];
+
+        questions.forEach((question, index) => {
+            if(!question.classList.contains('answered-question')) {
+                filteredArray.push({
+                    question: question,
+                    index: index,
+                });
             }
         });
 
-        do {
-            nextQuestionIndex++;
-       } while(questions[nextQuestionIndex].classList.contains('answered-question'));
+        let lastQuestionIndex = filteredArray[filteredArray.length - 1].index;
 
-        let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
+        if(nextQuestionIndex != lastQuestionIndex) {
+            questions.forEach((question) => {
+                if(question.classList.contains('current-question')) {
+                    question.classList.remove('current-question');
+                }
+            });
 
-        questions[nextQuestionIndex].classList.add("current-question");
-        
-        window.scrollTo({
-            top: nextPosY,
-        });
+            do {
+                nextQuestionIndex++;
+            } while(questions[nextQuestionIndex].classList.contains('answered-question'));
 
-        let answersDivs = answersArea.querySelectorAll('.question-answer');
+            let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
+            questions[nextQuestionIndex].classList.add("current-question");
 
-        answersDivs.forEach((div, index) => {
-            if(div.classList.contains('active-answer')) {
-                this.teams[categoryIndex].point -= (index - 2);
+            window.scrollTo({
+                top: nextPosY,
+            });
 
-                div.classList.remove('active-answer');
-                div.style.backgroundColor = "#fff";
-            }
-        });
+            let answersDivs = answersArea.querySelectorAll('.question-answer');
 
-        e.target.parentElement.parentElement.classList.add("answered-question");
+            answersDivs.forEach((div, index) => {
+                if(div.classList.contains('active-answer')) {
+                    this.teams[categoryIndex].point -= (index - 2);
 
-        answerDiv.classList.add('active-answer');
-        answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
-        this.teams[categoryIndex].point += answerIndex;
+                    div.classList.remove('active-answer');
+                    div.style.backgroundColor = "#fff";
+                }
+            });
+
+            e.target.parentElement.parentElement.classList.add("answered-question");
+
+            answerDiv.classList.add('active-answer');
+            answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
+            this.teams[categoryIndex].point += answerIndex;
+
+        } else {
+            e.target.parentElement.parentElement.classList.add("answered-question");
+            e.target.parentElement.parentElement.classList.remove("current-question");
+
+            this.teams[categoryIndex].point += answerIndex;
+            answerDiv.classList.add('active-answer');
+            answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
+        }
+
     }
 
     finishTest = () => {
@@ -249,9 +273,21 @@ class App {
             if(balloon.offsetTop > 500) {
                 balloon.style.display = "none";
             }
-        })
+        });
 
-        let bestTeam = this.teams.sort((a, b) => b.point - a.point)[0];
+        let bestScore = this.teams.sort((a, b) => b.point - a.point)[0].point;
+
+        let bestTeams = [];
+
+        this.teams.map((team) => {
+            if(team.point == bestScore) {
+                bestTeams.push(team);
+            }
+        });
+
+        let randomBestTeam = Math.floor(Math.random() * bestTeams.length);
+
+        let bestTeam = bestTeams[randomBestTeam];
 
         questionsArea.style.display = "none";
         endBtn.style.display = "none";
@@ -346,9 +382,9 @@ class App {
                 questionsDIV.style.marginLeft = "0";
             } else {
                 if(x % 2 == 0) {
-                    questionsDIV.style.marginLeft = "240px";
+                    questionsDIV.style.marginLeft = "256px";
                 } else {
-                    questionsDIV.style.marginLeft = "-240px";
+                    questionsDIV.style.marginLeft = "-256px";
                 }
             }
         }
