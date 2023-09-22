@@ -6,6 +6,9 @@ const endText = document.querySelector('.end-text');
 let questions;
 
 class App {
+
+    positions = [];
+
     teams = [
         {
             title: 'Tasarım Ekibi',
@@ -35,7 +38,7 @@ class App {
             title: 'Teknik Ekip',
             point: 0,
         },
-];
+    ];
 
     questions = [
         // TASARIM EKIBI
@@ -194,20 +197,30 @@ class App {
     ];
 
     selectAnswer = (e) => {
-        e.target.parentElement.parentElement.classList.add("answered-question");
         let answersArea = e.target.parentElement;
         let answerDiv = e.target;
         let answerIndex = parseInt(e.target.dataset.answerindex);
         let categoryIndex = answersArea.dataset.category;
 
-        let nextQuestionIndex = parseInt(answersArea.dataset.question) + 1;
+        let nextQuestionIndex = parseInt(answersArea.dataset.question);
+
+        questions.forEach((question) => {
+            if(question.classList.contains('current-question')) {
+                question.classList.remove('current-question');
+            }
+        });
+
+        do {
+            nextQuestionIndex++;
+       } while(questions[nextQuestionIndex].classList.contains('answered-question'));
 
         let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
 
+        questions[nextQuestionIndex].classList.add("current-question");
+        
         window.scrollTo({
             top: nextPosY,
         });
-
 
         let answersDivs = answersArea.querySelectorAll('.question-answer');
 
@@ -220,11 +233,11 @@ class App {
             }
         });
 
+        e.target.parentElement.parentElement.classList.add("answered-question");
+
         answerDiv.classList.add('active-answer');
         answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
         this.teams[categoryIndex].point += answerIndex;
-
-        console.log(this.teams);
     }
 
     finishTest = () => {
@@ -286,6 +299,8 @@ class App {
             });
 
             questionsArea.appendChild(div);
+
+            this.positions.push(div.offsetTop);
         });
     }
 
@@ -320,6 +335,25 @@ class App {
             document.body.appendChild(div);
         }
     }
+
+    onScroll = (e) => {
+        const WINDOW_HEIGHT = window.innerHeight;
+        let currentPosY = window.scrollY;
+
+        for(let x = 0; x < this.positions.length; x++) {
+            let questionsDIV = questions[x];
+            if(currentPosY + WINDOW_HEIGHT > this.positions[x] + 64) {
+                questionsDIV.style.marginLeft = "0";
+            } else {
+                if(x % 2 == 0) {
+                    questionsDIV.style.marginLeft = "240px";
+                } else {
+                    questionsDIV.style.marginLeft = "-240px";
+                }
+            }
+        }
+
+    }
 }
 
 const app = new App();
@@ -329,3 +363,5 @@ app.initBackground();
 questions = document.querySelectorAll('.question');
 
 endBtn.addEventListener('click', app.finishTest);
+
+window.addEventListener('scroll', app.onScroll);

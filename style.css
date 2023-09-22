@@ -124,8 +124,8 @@ body {
     padding: 8px 0;
     margin-top: 36px;
     /* background-color: rgba(0, 0, 0, 0.1); */
-    /* background-color: var(--blue); */
-    background-color: #4285F4ee;
+    background-color: var(--blue);
+    /* background-color: var(--yellow); */
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -210,23 +210,23 @@ body {
 }
 
 .answer-0:hover {
-    background-color: #ff000099;
+    background-color: var(--red);
 }
 
 .answer-1:hover {
-    background-color: #EA433599;
+    background-color: var(--red);
 }
 
 .answer-2:hover {
-    background-color: #F4B40099;
+    background-color: var(--yellow);
 }
 
 .answer-3:hover {
-    background-color: #0F9D5899;
+    background-color: var(--green);
 }
 
 .answer-4:hover {
-    background-color: #0F9D5899;
+    background-color: var(--green);
 }
 
 .form-footer {
@@ -287,29 +287,34 @@ body {
 
 @keyframes breath {
     0% {
-        transform: scale(1);
+        /* transform: scale(1); */
     }
 
     25% {
-        transform: scale(0.9);
+        /* transform: scale(0.9); */
+        rotate: 180deg;
     }
 
     50% {
-        transform: scale(1);
+        /* transform: scale(1); */
+        rotate: 180deg;
     }
 
     75% {
-        transform: scale(1.1);
+        /* transform: scale(1.1); */
+        rotate: 360deg;
     }
 
     100% {
-        transform: scale(1);
+        /* transform: scale(1); */
+        rotate: 360deg;
     }
 }
 
 .answered-question {
-    transition: 500ms;
+    /* transition: 500ms; */
     filter: opacity(0.6);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .background-balloon {
@@ -361,4 +366,54 @@ body {
     .end-btn {
         background-color: var(--yellow);
     }
+}
+
+@keyframes blur {
+    0% {
+        filter: blur(0);
+    }
+
+    12.5% {
+        filter: blur(2px);
+    }
+
+    25% {
+        filter: blur(0);
+    }
+
+    37.5% {
+        filter: blur(2px);
+    }
+
+    50% {
+        filter: blur(0);
+    }
+
+    62.5% {
+        filter: blur(2px);
+    }
+
+    75% {
+        filter: blur(0);
+    }
+
+    87.5% {
+        filter: blur(2px);
+    }
+
+    100% {
+        filter: blur(0);
+    }
+}
+
+.current-question {
+    background-color: #0F9D58ee;
+}
+
+.question:nth-child(2n) {
+    margin-left: 240px;
+}
+
+.question {
+    margin-left: -240px;
 }
