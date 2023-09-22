@@ -451,4 +451,5 @@ endBtn.addEventListener('click', () => {
     }, 2500);
 });
 
+app.onScroll();
 window.addEventListener('scroll', app.onScroll);
