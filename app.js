@@ -216,20 +216,34 @@ class App {
             }
         });
 
+
+        console.log(filteredArray.length);
+
+        if(filteredArray.length == 1) {
+            this.finishTest();
+        }
+
         let lastQuestionIndex = filteredArray[filteredArray.length - 1].index;
 
+        questions.forEach((question) => {
+            if(question.classList.contains('current-question')) {
+                question.classList.remove('current-question');
+            }
+        });
+
         if(nextQuestionIndex != lastQuestionIndex) {
-            questions.forEach((question) => {
-                if(question.classList.contains('current-question')) {
-                    question.classList.remove('current-question');
-                }
-            });
+            
 
             do {
-                nextQuestionIndex++;
+                if(nextQuestionIndex >= lastQuestionIndex) {
+                    nextQuestionIndex--;
+                } else {
+                    nextQuestionIndex++;
+                }
             } while(questions[nextQuestionIndex].classList.contains('answered-question'));
 
             let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
+
             questions[nextQuestionIndex].classList.add("current-question");
 
             window.scrollTo({
@@ -260,6 +274,17 @@ class App {
             this.teams[categoryIndex].point += answerIndex;
             answerDiv.classList.add('active-answer');
             answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
+
+            do {
+                nextQuestionIndex--;
+            } while(questions[nextQuestionIndex].classList.contains('answered-question'));
+
+            window.scrollTo({
+                top: questions[nextQuestionIndex].offsetTop - 18,
+            });
+
+            questions[nextQuestionIndex].classList.add('current-question');
+
         }
 
     }
