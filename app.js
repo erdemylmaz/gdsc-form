@@ -3,6 +3,8 @@ const endBtn = document.querySelector('.end-btn');
 const headerText = document.querySelector('.header-text');
 const endText = document.querySelector('.end-text');
 
+let questions;
+
 class App {
     teams = [
         {
@@ -198,6 +200,15 @@ class App {
         let answerIndex = parseInt(e.target.dataset.answerindex);
         let categoryIndex = answersArea.dataset.category;
 
+        let nextQuestionIndex = parseInt(answersArea.dataset.question) + 1;
+
+        let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
+
+        window.scrollTo({
+            top: nextPosY,
+        });
+
+
         let answersDivs = answersArea.querySelectorAll('.question-answer');
 
         answersDivs.forEach((div, index) => {
@@ -262,10 +273,44 @@ class App {
             questionsArea.appendChild(div);
         });
     }
+
+    initBackground = () => {
+        // random balloons randmo colors random positions
+        const SIZES = [12, 16, 24, 32, 48];
+        const COUNT = 50;
+
+        const WIDTH = window.innerWidth;
+        const HEIGHT = document.body.clientHeight;
+
+        for(let x = 0; x < COUNT; x++) {
+            let randomNumber = Math.floor(Math.random() * SIZES.length);
+            let randomColorNumber = Math.floor(Math.random() * 4);
+
+            let randomX = Math.floor(Math.random() * WIDTH);
+            let randomY = Math.floor(Math.random() * HEIGHT);
+
+            let size = SIZES[randomNumber];
+
+            let div = document.createElement('div');
+            div.className = "background-balloon";
+
+            div.style.width = `${size}px`;
+            div.style.height = `${size}px`;
+
+            div.style.top = `${randomY}px`;
+            div.style.left = `${randomX}px`;
+
+            div.style.backgroundColor = `var(--color${randomColorNumber})`;
+
+            document.body.appendChild(div);
+        }
+    }
 }
 
 const app = new App();
 
 app.initQuestions();
+app.initBackground();
+questions = document.querySelectorAll('.question');
 
 endBtn.addEventListener('click', app.finishTest);
