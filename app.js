@@ -3,6 +3,10 @@ const endBtn = document.querySelector('.end-btn');
 const headerText = document.querySelector('.header-text');
 const endText = document.querySelector('.end-text');
 
+const loadingScreen = document.querySelector('.loading-screen');
+const appScreen = document.querySelector('.app-screen');
+const header = document.querySelector('.header');
+
 let questions;
 
 class App {
@@ -217,10 +221,22 @@ class App {
         });
 
 
-        console.log(filteredArray.length);
-
+        // FINISH TEST BY LAST ANSWER
         if(filteredArray.length == 1) {
-            this.finishTest();
+            let balloons = document.querySelectorAll('.background-balloon');
+
+            balloons.forEach((balloon) => {
+                if(balloon.offsetTop > 500) {
+                    balloon.style.display = "none";
+                }
+            });
+
+            appScreen.style.display = "none";
+            loadingScreen.style.display = "flex";
+
+            setTimeout(() => {
+                this.finishTest();
+            }, 2500);
         }
 
         let lastQuestionIndex = filteredArray[filteredArray.length - 1].index;
@@ -291,14 +307,9 @@ class App {
 
     finishTest = () => {
         // congrats (emoji); we though you would fit...
-
-        let balloons = document.querySelectorAll('.background-balloon');
-
-        balloons.forEach((balloon) => {
-            if(balloon.offsetTop > 500) {
-                balloon.style.display = "none";
-            }
-        });
+        appScreen.style.display = "flex";
+        header.style.display = "none";
+        loadingScreen.style.display = "none";
 
         let bestScore = this.teams.sort((a, b) => b.point - a.point)[0].point;
 
@@ -423,6 +434,21 @@ app.initQuestions();
 app.initBackground();
 questions = document.querySelectorAll('.question');
 
-endBtn.addEventListener('click', app.finishTest);
+endBtn.addEventListener('click', () => {
+    let balloons = document.querySelectorAll('.background-balloon');
+
+    balloons.forEach((balloon) => {
+        if(balloon.offsetTop > 500) {
+            balloon.style.display = "none";
+        }
+    });
+
+    appScreen.style.display = "none";
+    loadingScreen.style.display = "flex";
+
+    setTimeout(() => {
+        app.finishTest();
+    }, 2500);
+});
 
 window.addEventListener('scroll', app.onScroll);
