@@ -384,7 +384,7 @@ class App {
         const SIZES = [12, 16, 24, 32, 48];
         const COUNT = 50;
 
-        const WIDTH = window.innerWidth;
+        const WIDTH = window.innerWidth - 64;
         const HEIGHT = document.body.clientHeight - 64;
 
         for(let x = 0; x < COUNT; x++) {
