@@ -9,6 +9,8 @@ const header = document.querySelector('.header');
 
 const logoBlocks = document.querySelectorAll('.logo-block');
 const logoDiv = document.querySelector('.logo-div');
+const headerTitle = document.querySelector('.header-title');
+const headerWords = document.querySelectorAll('.header-word');
 
 let questions;
 
@@ -445,6 +447,7 @@ class App {
         logoBlocks.forEach((block, index) => {
             setTimeout(() => {
                 block.style.filter = "opacity(1)";
+                headerWords[index].style.filter = "opacity(1)";
 
                 if(index == 0) {
                     block.style.transform = "rotate(30deg)";
@@ -456,6 +459,12 @@ class App {
                     block.style.transform = "rotate(-30deg)";
                     setTimeout(() => {
                         logoDiv.style.animation = "lightbulb 2s"
+                        headerTitle.style.animation = "lightbulb 2s";
+
+                        setTimeout(() => {
+                            logoDiv.style.filter = "brightness(1)";
+                            headerTitle.style.filter = "brightness(1)";
+                        }, 2000);
                     }, 1000);
                 }
 

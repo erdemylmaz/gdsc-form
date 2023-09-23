@@ -20,6 +20,8 @@
     --answerColor2: #F4B400;
     --answerColor3: #0F9D58;
     --answerColor4: #0F9D58;
+
+    --brightness: brightness(0.1);
 }
 
 html {
@@ -56,6 +58,7 @@ body {
     font-weight: 800;
     color: var(--yellow);
     text-align: center;
+    filter: var(--brightness);
 }
 
 .title-top {
@@ -74,7 +77,7 @@ body {
 
 .logo {
     width: 256px;
-    animation: breath 5s ease infinite;
+    /* animation: breath 5s ease infinite; */
 }
 
 .header-text {
@@ -108,6 +111,7 @@ body {
 
 .questions {
     width: 100vw;
+    margin-top: -10vh;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -493,6 +497,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 32px;
+    filter: var(--brightness);
 }
 
 .logo-left, .logo-right {
@@ -501,7 +506,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 128px;
-    height: 256px;
+    height: 140px;
 }
 
 .logo-red {
@@ -548,7 +553,7 @@ body {
 @keyframes lightbulb {
     0%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       1%{
@@ -558,12 +563,12 @@ body {
       }
       1.001%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       10%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       11.001%{
@@ -573,7 +578,7 @@ body {
       }
       11.002%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       12%{
@@ -590,7 +595,7 @@ body {
       }
       40%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       41%{
@@ -600,7 +605,7 @@ body {
       }
       41.001%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       
@@ -608,7 +613,7 @@ body {
       
       75%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       75.5%{
@@ -618,7 +623,7 @@ body {
       }
       75.501%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       
@@ -626,7 +631,7 @@ body {
       
       80%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       81.001%{
@@ -636,7 +641,7 @@ body {
       }
       81.002%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       82%{
@@ -651,7 +656,7 @@ body {
       }
       82.002%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       83%{
@@ -661,7 +666,7 @@ body {
       }
       83.001%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       83.002%{
@@ -671,7 +676,7 @@ body {
       }
       83.003%{
         /* opacity: 0; */
-        filter: brightness(0);
+        filter: var(--brightness);
 
       }
       88%{
@@ -679,4 +684,9 @@ body {
         filter: brightness(1);
 
       }
+}
+
+.header-word {
+    filter: opacity(0);
+    transition: 1s;
 }
