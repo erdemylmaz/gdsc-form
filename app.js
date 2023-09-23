@@ -444,7 +444,7 @@ class App {
                 } else if (index == 3) {
                     block.style.transform = "rotate(-30deg)";
                     setTimeout(() => {
-                        logoDiv.style.animation = "lightbulb 1s"
+                        logoDiv.style.animation = "lightbulb 2s"
                     }, 1000);
                 }
 
