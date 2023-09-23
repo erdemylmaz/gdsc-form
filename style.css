@@ -402,6 +402,10 @@ body {
     .end-btn {
         background-color: var(--yellow);
     }
+
+    .header-title {
+        font-size: 32px;
+    }
 }
 
 @keyframes blur {
