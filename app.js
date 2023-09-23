@@ -314,7 +314,9 @@ class App {
         header.style.display = "none";
         loadingScreen.style.display = "none";
 
-        let bestScore = this.teams.sort((a, b) => b.point - a.point)[0].point;
+        let sortedTeams = this.teams.sort((a, b) => b.point - a.point);
+
+        let bestScore = sortedTeams[0].point;
 
         let bestTeams = [];
 
@@ -326,7 +328,7 @@ class App {
 
         let randomBestTeam = Math.floor(Math.random() * bestTeams.length);
 
-        let bestTeam = bestTeams[randomBestTeam];
+        let bestTeam = bestTeams[0];
 
         questionsArea.style.display = "none";
         endBtn.style.display = "none";
@@ -341,7 +343,16 @@ class App {
             <div class="end-bot-text">
                 Verdiğiniz cevaplara göre size en uygun gördüğümüz ekibimiz <span class="end-span">${bestTeam.title}.</span>
             </div>
-
+        </div>
+        
+        <div class="end-list">
+            <div class="end-list-item"><span class="list-item-index">1</span>${sortedTeams[0].title} [${sortedTeams[0].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">2</span>${sortedTeams[1].title} [${sortedTeams[1].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">3</span>${sortedTeams[2].title} [${sortedTeams[2].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">4</span>${sortedTeams[3].title} [${sortedTeams[3].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">5</span>${sortedTeams[4].title} [${sortedTeams[4].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">6</span>${sortedTeams[5].title} [${sortedTeams[5].point}]</div>
+            <div class="end-list-item"><span class="list-item-index">7</span>${sortedTeams[6].title} [${sortedTeams[6].point}]</div>
         </div>
         `;
 
@@ -465,7 +476,7 @@ endBtn.addEventListener('click', () => {
     let balloons = document.querySelectorAll('.background-balloon');
 
     balloons.forEach((balloon) => {
-        if(balloon.offsetTop > 500) {
+        if(balloon.offsetTop > 0) {
             balloon.style.display = "none";
         }
     });
