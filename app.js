@@ -11,6 +11,9 @@ const logoBlocks = document.querySelectorAll('.logo-block');
 const logoDiv = document.querySelector('.logo-div');
 const headerTitle = document.querySelector('.header-title');
 const headerWords = document.querySelectorAll('.header-word');
+const schoolWords = document.querySelectorAll('.school-word');
+
+const iztechWord = document.querySelector('.iztech');
 
 let questions;
 
@@ -365,6 +368,10 @@ class App {
             let div = document.createElement('div');
             div.className = "question";
 
+            if(index == 0) {
+                div.style.marginTop = "8px";
+            }
+
             div.innerHTML = `
                 <div class="question-index">${index + 1}</div>
                 <div class="question-title">${question.title}</div>
@@ -448,6 +455,7 @@ class App {
             setTimeout(() => {
                 block.style.filter = "opacity(1)";
                 headerWords[index].style.filter = "opacity(1)";
+                schoolWords[index].style.filter = "opacity(1)";
 
                 if(index == 0) {
                     block.style.transform = "rotate(30deg)";
@@ -464,6 +472,7 @@ class App {
                         setTimeout(() => {
                             logoDiv.style.filter = "brightness(1)";
                             headerTitle.style.filter = "brightness(1)";
+
                         }, 2000);
                     }, 1000);
                 }
