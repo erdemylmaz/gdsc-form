@@ -7,6 +7,9 @@ const loadingScreen = document.querySelector('.loading-screen');
 const appScreen = document.querySelector('.app-screen');
 const header = document.querySelector('.header');
 
+const logoBlocks = document.querySelectorAll('.logo-block');
+const logoDiv = document.querySelector('.logo-div');
+
 let questions;
 
 class App {
@@ -426,12 +429,36 @@ class App {
         }
 
     }
+
+    initLogo = () => {
+        logoBlocks.forEach((block, index) => {
+            setTimeout(() => {
+                block.style.filter = "opacity(1)";
+
+                if(index == 0) {
+                    block.style.transform = "rotate(30deg)";
+                } else if (index == 1) {
+                    block.style.transform = "rotate(-30deg)";
+                } else if (index == 2) {
+                    block.style.transform = "rotate(30deg)";
+                } else if (index == 3) {
+                    block.style.transform = "rotate(-30deg)";
+                    setTimeout(() => {
+                        logoDiv.style.animation = "lightbulb 1s"
+                    }, 1000);
+                }
+
+            }, 1000 * index)
+        });
+    }
 }
 
 const app = new App();
 
 app.initQuestions();
 app.initBackground();
+app.initLogo();
+
 questions = document.querySelectorAll('.question');
 
 endBtn.addEventListener('click', () => {
