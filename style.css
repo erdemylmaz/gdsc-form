@@ -200,12 +200,12 @@ body {
     top: 8px;
     left: 16px;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 24px;
     /* color: var(--red); */
     color: #fff;
     font-style: italic;
     text-shadow: 0 0 2px #000;
-    font-family: myFont;
+    /* font-family: myFont; */
 }
 
 .answer-0 {
@@ -262,7 +262,8 @@ body {
 }
 
 .end-btn {
-    width: 128px;
+    /* width: 128px; */
+    padding: 0 8px;
     height: 48px;
     /* background-color: var(--yellow); */
     /* background-color: rgba(0, 0, 0, 0.2); */
@@ -306,7 +307,7 @@ body {
 
 .list-item-index {
     margin-right: 16px;
-    font-family: myFont;
+    /* font-family: myFont; */
     color: var(--blue);
 }
 
@@ -327,7 +328,7 @@ body {
     font-weight: 800;
     color: var(--yellow);
     letter-spacing: 4px;
-    font-family: myFont;
+    /* font-family: myFont; */
     font-size: 36px;
     text-shadow: 0 0 1px #232323;
 }
@@ -344,7 +345,7 @@ body {
 .end-span {
     font-weight: 500;
     color: var(--blue);
-    font-family: myFont;
+    /* font-family: myFont; */
     font-size: 36px;
     text-shadow: 0 0 1px #232323;
 }
