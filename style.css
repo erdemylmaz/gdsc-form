@@ -320,7 +320,9 @@ body {
 .list-item-index {
     margin-right: 16px;
     /* font-family: myFont; */
-    color: var(--blue);
+    font-weight: 900;
+    text-shadow:  0 0 4px var(--blue);
+    color: #fff;
 }
 
 .end-list-item {
