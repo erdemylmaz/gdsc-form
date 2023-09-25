@@ -431,7 +431,7 @@ class App {
         const WINDOW_HEIGHT = window.innerHeight;
         let currentPosY = window.scrollY;
 
-        for(let x = 0; x < 7; x++) {
+        for(let x = 0, questionsLength = this.questions.length; x < questionsLength; x++) {
             let questionsDIV = questions[x];
             if(currentPosY + WINDOW_HEIGHT > this.positions[x] + 64) {
                 questionsDIV.style.marginLeft = "0";
