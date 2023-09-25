@@ -226,6 +226,10 @@ class App {
                     index: index,
                 });
             }
+
+            if(question.classList.contains('current-question')) {
+                question.classList.remove('current-question');
+            }
         });
 
 
@@ -249,15 +253,7 @@ class App {
 
         let lastQuestionIndex = filteredArray[filteredArray.length - 1].index;
 
-        questions.forEach((question) => {
-            if(question.classList.contains('current-question')) {
-                question.classList.remove('current-question');
-            }
-        });
-
         if(nextQuestionIndex != lastQuestionIndex) {
-            
-
             do {
                 if(nextQuestionIndex >= lastQuestionIndex) {
                     nextQuestionIndex--;
@@ -435,7 +431,7 @@ class App {
         const WINDOW_HEIGHT = window.innerHeight;
         let currentPosY = window.scrollY;
 
-        for(let x = 0; x < this.positions.length; x++) {
+        for(let x = 0; x < 7; x++) {
             let questionsDIV = questions[x];
             if(currentPosY + WINDOW_HEIGHT > this.positions[x] + 64) {
                 questionsDIV.style.marginLeft = "0";

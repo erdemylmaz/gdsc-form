@@ -9,15 +9,26 @@
 }
 
 :root {
-    --red: #EA4335;
-    --blue: #4285F4;
-    --yellow: #f9ab00;
-    --green: #34a853;
+    --red: #EA4335; /* --gdscRed */
+    --blue: #4285F4; /* --gdscBlue */
+    --yellow: #f9ab00; /* --gdscYellow */
+    --green: #34a853; /* --gdscGreen */
 
-    --schoolRed: #750014;
+    --schoolRed: #750014; /* --iztechRed */
+
+    --mitRed: #750014;
+    --mitLightRed: #ff1423;
+    --mitGray: #8b959e;
+    --mitDarkGray: #212326;
+    --mitBlue: #1966ff;
+    --mitLightBlue: #99ebff;
+    --mitGreen: #00ad00;
+
+    --legoBlue: #0055BF;
+    --legoBlue2: #0059A3;
+    --legoGray: #595D60;
 
     --gray: #5f6368;
-
 
     --color0: #EA4335;
     --color1: #4285F4;
@@ -60,6 +71,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-bottom: 8px;
 }
 
 .header-title {
@@ -130,7 +142,7 @@ body {
 .questions {
     width: 100vw;
     overflow-x: hidden;
-    margin-top: 16px;
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -713,7 +725,7 @@ body {
     }
 
     .g, .d, .s, .c {
-        font-size: 30px;
+        font-size: 24px;
     }
 
     .iztech {
@@ -721,7 +733,7 @@ body {
     }
 
     .header-text {
-        font-size: 12px;
+        font-size: 10px;
     }
 
     .end-header {
