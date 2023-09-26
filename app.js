@@ -15,7 +15,11 @@ const schoolWords = document.querySelectorAll('.school-word');
 
 const iztechWord = document.querySelector('.iztech');
 
+const WINDOW_HEIGHT = window.innerHeight;
+
 let questions;
+
+let answerBoxes;
 
 class App {
 
@@ -83,10 +87,10 @@ class App {
             title: 'İzleyici kitlesi ile etkili bir şekilde etkileşim kurabiliyorum.',
             category: 1,
         },
-        {
-            title: 'Pazarlama stratejileri oluşturabiliyorum.',
-            category: 1,
-        },
+        // {
+        //     title: 'Pazarlama stratejileri oluşturabiliyorum.',
+        //     category: 1,
+        // },
         {
             title: "GDSC IZTECH'i geniş kitlelere tanıtmak için sosyal medyayı etkin bir şekilde kullanabiliyorum",
             category: 1,
@@ -109,14 +113,14 @@ class App {
             title: "İş birliği ve ortaklıklar yoluyla öğrencilerin gelişimine katkıda bulunmak istiyorum.",
             category: 2,
         },
-        {
-            title: "GDSC IZTECH'in bir parçası olarak üniversite dışı kuruluşlarla ve iş dünyasıyla iş birliği yapmaktan gurur duyuyorum.",
-            category: 2,
-        },
-        {
-            title: "Teknoloji şirketleri, kuruluşlar ve diğer topluluklarla iş birliği fırsatlarını değerlendirerek öğrencilerin yeni deneyimler kazanmalarına ve iş dünyasına hazırlanmalarına yardımcı olmaktan keyif alıyorum.",
-            category: 2,
-        },
+        // {
+        //     title: "GDSC IZTECH'in bir parçası olarak üniversite dışı kuruluşlarla ve iş dünyasıyla iş birliği yapmaktan gurur duyuyorum.",
+        //     category: 2,
+        // },
+        // {
+        //     title: "Teknoloji şirketleri, kuruluşlar ve diğer topluluklarla iş birliği fırsatlarını değerlendirerek öğrencilerin yeni deneyimler kazanmalarına ve iş dünyasına hazırlanmalarına yardımcı olmaktan keyif alıyorum.",
+        //     category: 2,
+        // },
 
         // YAPAY ZEKA
         {
@@ -131,10 +135,10 @@ class App {
             title: "GDSC IZTECH'in bir parçası olarak yapay zeka ve veri bilimi alanındaki öğrencilere yardımcı olmaktan gurur duyuyorum.",
             category: 3,
         },
-        {
-            title: "Yeni teknolojileri araştırarak topluluğu güncel tutarak öğrencilerin bu teknolojileri öğrenmesine yardımcı olmaktan heyecan duyuyorum.",
-            category: 3,
-        },
+        // {
+        //     title: "Yeni teknolojileri araştırarak topluluğu güncel tutarak öğrencilerin bu teknolojileri öğrenmesine yardımcı olmaktan heyecan duyuyorum.",
+        //     category: 3,
+        // },
         {
             title: "Eğitimler, atölye çalışmaları ve projeler düzenleyerek yapay zeka ve veri bilimi alanındaki öğrencilerin beceri kazanmasına yardımcı olmaktan keyif alıyorum.",
             category: 3,
@@ -158,10 +162,10 @@ class App {
             title: "Diğerleriyle birlikte çalışmak ve projelere katkıda bulunmaktan mutluluk duyuyorum.",
             category: 4,
         },
-        {
-            title: "Projelerin başarılı bir şekilde tamamlanması için çalışmaktan gurur duyuyorum.",
-            category: 4,
-        },
+        // {
+        //     title: "Projelerin başarılı bir şekilde tamamlanması için çalışmaktan gurur duyuyorum.",
+        //     category: 4,
+        // },
 
         // ETKINLIK
         {
@@ -180,10 +184,10 @@ class App {
             title: "GDSC etkinliklerini planlamak, bu etkinliklerin tarihlerini belirlemek ve konseptlerini oluşturmaktan heyecan duyuyorum.",
             category: 5,
         },
-        {
-            title: "Yeni insanlarla tanışmayı ve etkinlikler düzenlemekten keyif alıyorum.",
-            category: 5,
-        },
+        // {
+        //     title: "Yeni insanlarla tanışmayı ve etkinlikler düzenlemekten keyif alıyorum.",
+        //     category: 5,
+        // },
 
         // TEKNIK EKIP
         {
@@ -194,10 +198,10 @@ class App {
             title: "Teknik bilgi ve becerilerimi başkalarıyla paylaşmaktan mutluluk duyuyorum.",
             category: 6,
         },
-        {
-            title: "GDSC üyelerine Google'ın geliştirici ürünleri hakkında bilgi vermekten ve bu ürünlerle nasıl çalışacaklarını öğretmekten keyif alıyorum.",
-            category: 6,
-        },
+        // {
+        //     title: "GDSC üyelerine Google'ın geliştirici ürünleri hakkında bilgi vermekten ve bu ürünlerle nasıl çalışacaklarını öğretmekten keyif alıyorum.",
+        //     category: 6,
+        // },
         {
             title: "Üyeleri hackathonlara veya kodlama yarışmalarına katılmaya teşvik etmekten ve bu tür etkinliklere destek vermekten mutluluk duyuyorum.",
             category: 6,
@@ -209,18 +213,20 @@ class App {
     ];
 
     selectAnswer = (e) => {
-        let answersArea = e.target.parentElement;
         let answerDiv = e.target;
-        let answerIndex = parseInt(e.target.dataset.answerindex);
+        let answersArea = answerDiv.parentElement;
+        let answerIndex = parseInt(answerDiv.dataset.answerindex);
         let categoryIndex = answersArea.dataset.category;
 
         let nextQuestionIndex = parseInt(answersArea.dataset.question);
 
-        // GET UNANSWERED QUESTIONS TO DECLARE LAST QUESTION
+        let questionDIV = e.target.parentElement.parentElement;
+
         let filteredArray = [];
 
+        // GET UNANSWERED QUESTIONS TO DECLARE LAST QUESTION
         questions.forEach((question, index) => {
-            if(!question.classList.contains('answered-question')) {
+            if(question.dataset.status != "answered") {
                 filteredArray.push({
                     question: question,
                     index: index,
@@ -232,6 +238,7 @@ class App {
             }
         });
 
+        console.log(filteredArray);
 
         // FINISH TEST BY LAST ANSWER
         if(filteredArray.length == 1) {
@@ -260,7 +267,8 @@ class App {
                 } else {
                     nextQuestionIndex++;
                 }
-            } while(questions[nextQuestionIndex].classList.contains('answered-question'));
+
+            } while(questions[nextQuestionIndex].dataset.status == "answered");
 
             let nextPosY = questions[nextQuestionIndex].offsetTop - 18;
 
@@ -281,15 +289,16 @@ class App {
                 }
             });
 
-            e.target.parentElement.parentElement.classList.add("answered-question");
+            questionDIV.setAttribute('data-status', "answered");
+            questionDIV.style.backgroundColor = "var(--gray)";
 
             answerDiv.classList.add('active-answer');
             answerDiv.style.backgroundColor = `var(--answerColor${(answerIndex + 2)})`;
             this.teams[categoryIndex].point += answerIndex;
 
         } else {
-            e.target.parentElement.parentElement.classList.add("answered-question");
-            e.target.parentElement.parentElement.classList.remove("current-question");
+            questionDIV.setAttribute('data-status', "answered");
+            questionDIV.style.backgroundColor = "var(--gray)";
 
             this.teams[categoryIndex].point += answerIndex;
             answerDiv.classList.add('active-answer');
@@ -297,16 +306,14 @@ class App {
 
             do {
                 nextQuestionIndex--;
-            } while(questions[nextQuestionIndex].classList.contains('answered-question'));
+            } while(questions[nextQuestionIndex].dataset.status == "answered");
 
             window.scrollTo({
                 top: questions[nextQuestionIndex].offsetTop - 18,
             });
 
             questions[nextQuestionIndex].classList.add('current-question');
-
         }
-
     }
 
     finishTest = () => {
@@ -362,7 +369,8 @@ class App {
     initQuestions = () => {
         this.questions.map((question, index) => {
             let div = document.createElement('div');
-            div.className = "question";
+            div.className = "question unanswered-question";
+            div.setAttribute('data-index', index);
 
             if(index == 0) {
                 div.style.marginTop = "8px";
@@ -392,6 +400,7 @@ class App {
             questionsArea.appendChild(div);
 
             this.positions.push(div.offsetTop);
+
         });
     }
 
@@ -428,19 +437,20 @@ class App {
     }
 
     onScroll = (e) => {
-        const WINDOW_HEIGHT = window.innerHeight;
         let currentPosY = window.scrollY;
 
         for(let x = 0, questionsLength = this.questions.length; x < questionsLength; x++) {
             let questionsDIV = questions[x];
             if(currentPosY + WINDOW_HEIGHT > this.positions[x] + 64) {
                 questionsDIV.style.marginLeft = "0";
+
             } else {
                 if(x % 2 == 0) {
                     questionsDIV.style.marginLeft = "256px";
                 } else {
                     questionsDIV.style.marginLeft = "-256px";
                 }
+
             }
         }
 

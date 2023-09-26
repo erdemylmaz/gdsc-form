@@ -38,8 +38,8 @@
     --answerColor0: #EA4335;
     --answerColor1: #EA4335;
     --answerColor2: #F4B400;
-    --answerColor3: #0F9D58;
-    --answerColor4: #0F9D58;
+    --answerColor3: #34a853;
+    --answerColor4: #34a853;
 
     --brightness: brightness(0.1);
 }
@@ -480,14 +480,14 @@ body {
 .current-question {
     background-color: #0F9D58ee;
 }
-
+/* 
 .question:nth-child(2n) {
     margin-left: 256px;
-}
+} */
 
-.question {
+/* .question {
     margin-left: -256px;
-}
+} */
 
 .app-screen {
     width: 100%;
