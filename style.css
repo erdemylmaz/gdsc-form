@@ -42,7 +42,7 @@
 body {
     width: 100%;
     height: 100vh;
-    background-color: var(--gray);
+    background-color: var(--mitDarkGray);
     margin: 0;
     padding: 0;
     display: flex;
@@ -58,7 +58,7 @@ body {
 }
 
 .form-link {
-    color: var(--mitDarkGray);
+    color: var(--gray);
     transition: 250ms;
 }
 
@@ -76,7 +76,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* filter: var(--brightness); */
+    filter: var(--brightness);
     margin-bottom: 48px;
 }
 

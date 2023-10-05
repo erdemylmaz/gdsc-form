@@ -19,6 +19,7 @@ function initLogo() {
                     logoDiv.style.animation = "lightbulb 2s";
 
                     setTimeout(() => {
+                        logoDiv.style.filter = "brightness(1)";
                         logoDiv.style.animation = "none";
                     }, 2000);
                 }, 1000);
